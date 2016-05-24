@@ -24,22 +24,32 @@ ostream &operator<<(ostream &os, eeOperator op)
             os << '/';
             break;
         }
-            case EEOP_LE:
+        case EEOP_AND:
+        {
+	  os << "and";
+             break;
+	}
+        case EEOP_OR:
+        {
+	  os << "or";
+             break;
+	}
+        case EEOP_LE:
         {
           os << "<=";
              break;
         }
-          case EEOP_LT:
+        case EEOP_LT:
         {
           os << '<';
              break;
         }
-          case EEOP_GE:
+        case EEOP_GE:
         {
           os << ">=";
              break;
         }
-          case EEOP_GT:
+        case EEOP_GT:
         {
           os << '>';
              break;

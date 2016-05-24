@@ -14,6 +14,8 @@ enum eeOperator {
     EEOP_MINUS,
     EEOP_MUL,
     EEOP_DIV,
+    EEOP_AND,
+    EEOP_OR,
     EEOP_LE,
     EEOP_LT,
     EEOP_GE,

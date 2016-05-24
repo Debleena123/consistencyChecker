@@ -1,22 +1,30 @@
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -Wunused-function
 INCLUDES = -I.
 
 SRCS = \
-	eeExpr.cpp        \
-	eeDouble.cpp   \
-        eeInteger.cpp      \
-	eeNamedExpr.cpp   \
-        eeBinaryExpr.cpp  \
-	
+	main/main.cpp  \
 
 OBJS = $(SRCS:%.cpp=%.o)
 
-om.lib: $(OBJS)
-	ld -r -o $@ $^
+SUBDIRS = \
+	om     \
+	parser \
+
+LIBS = om/om.lib parser/parser.lib
+
+consChecker: libs $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS) -lstdc++
+
+libs:
+	$(MAKE) -C om
+	$(MAKE) -C parser
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 clean:
-	rm -f $(OBJS) om.lib
+	$(MAKE) -C om clean
+	$(MAKE) -C parser clean
+	rm -f $(OBJS) consChecker
+	rm -f cscope.out

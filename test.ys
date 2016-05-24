@@ -1,0 +1,6 @@
+(define a::bool)
+(define b::bool)
+(assert(= a true))
+(assert(= b true))
+(assert(= a b))
+(check)
